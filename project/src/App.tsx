@@ -27,14 +27,15 @@ function App() {
     ws.onmessage = (event) => {
       console.log("Received message:", event.data);
 
+    
       try {
-        const parsedMessage = JSON.parse(event.data);
-
+           const parsedMessage = event.data.startsWith("{") ? JSON.parse(event.data) : event.data;
         if (parsedMessage.type === "chat") {
           const newMessage: Message = {
-            id: Date.now().toString(),
+            id:  Date.now().toString(),
             sender: parsedMessage.payload.username,
             content: parsedMessage.payload.message,
+            timestamp: new Date('2024-12-09T10:00:00').toString()
           };
           setMessages((prevMessages) => [...prevMessages, newMessage]);
         }
@@ -52,6 +53,8 @@ function App() {
           setRoomState((prevState) => ({
             ...prevState,
             inRoom: true,
+            
+
           }));
         }
       } catch (error) {
@@ -123,6 +126,7 @@ function App() {
           <RoomSelection
             onJoinRoom={handleJoinRoom}
             onCreateRoom={handleCreateRoom}
+            setRoomState ={setRoomState}
           />
         </div>
       ) : (

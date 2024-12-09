@@ -67,7 +67,7 @@ export function ChatRoom({
               type="text"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:indigo-gray-500"
               placeholder="Type your message..."
             />
             <button
@@ -76,7 +76,7 @@ export function ChatRoom({
               className={`inline-flex items-center gap-2 px-6 py-2 rounded-lg transition-colors ${
                 message.trim()
                   ? "bg-indigo-600 text-white hover:bg-indigo-700"
-                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  : "bg-indigo-300 text-indigo-500 cursor-not-allowed"
               }`}
             >
               <Send className="w-5 h-5" />

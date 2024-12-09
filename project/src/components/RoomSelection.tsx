@@ -4,9 +4,13 @@ import { Users, Plus, LogIn } from 'lucide-react';
 interface RoomSelectionProps {
   onJoinRoom: (roomId: string, username: string) => void;
   onCreateRoom: (roomName: string, username: string) => void;
-}
+  setRoomState: React.Dispatch<React.SetStateAction<{
+    inRoom: boolean;
+    roomId: string;
+    username: string;
+  }>>;}
 
-export function RoomSelection({ onJoinRoom, onCreateRoom }: RoomSelectionProps) {
+export function RoomSelection({ onJoinRoom, onCreateRoom ,setRoomState }: RoomSelectionProps) {
   const [isJoining, setIsJoining] = useState(true);
   const [username, setUsername] = useState('');
   const [roomInput, setRoomInput] = useState('');
@@ -15,15 +19,20 @@ export function RoomSelection({ onJoinRoom, onCreateRoom }: RoomSelectionProps) 
     e.preventDefault();
     if (isJoining) {
       onJoinRoom(roomInput, username);
+      setRoomState({
+        inRoom: true,
+        roomId:roomInput,
+        username,
+      });
     } else {
-      onCreateRoom(roomInput, username);
+      onCreateRoom(username, username);
     }
   };
 
   return (
     <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-xl">
       <div className="flex justify-center mb-8">
-        <Users className="w-16 h-16 text-indigo-600" />
+        <Users className="w-16 h-16 text-gray-600" />
       </div>
       
       <div className="flex gap-4 mb-6">
@@ -32,7 +41,7 @@ export function RoomSelection({ onJoinRoom, onCreateRoom }: RoomSelectionProps) 
           className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
             isJoining
               ? 'bg-indigo-600 text-white'
-              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              : 'bg-indigo-100 text-gray-600 hover:bg-gray-200'
           }`}
         >
           Join Room
