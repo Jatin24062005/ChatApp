@@ -17,7 +17,7 @@ function App() {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8080");
+    const ws = new WebSocket("https://chatapp-h8bz.onrender.com");
     setSocket(ws);
 
     ws.onopen = () => {
