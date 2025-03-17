@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run install && tsc -b",
+    "build": "npm run install && tsc -b && npm install -g nodemon",
     "dev": "tsc -b && nodemon ./dist/index.js"
   },
   "keywords": [],
